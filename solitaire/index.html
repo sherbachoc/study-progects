@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Косынка</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="game-container">
+            <div class="game-header">
+                <h1>Косынка</h1>
+                <div class="game-stats">
+                    <div class="timer">
+                        <span class="material-icons">timer</span>
+                        <span id="time">00:00</span>
+                    </div>
+                    <div class="moves">
+                        <span class="material-icons">refresh</span>
+                        <span id="moves">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button id="newGameBtn" class="btn">Новая игра</button>
+                <button id="undoBtn" class="btn" disabled>Отменить ход</button>
+            </div>
+
+            <div class="game-board">
+                <div class="foundation-piles">
+                    <div class="foundation-pile" data-suit="hearts"></div>
+                    <div class="foundation-pile" data-suit="diamonds"></div>
+                    <div class="foundation-pile" data-suit="clubs"></div>
+                    <div class="foundation-pile" data-suit="spades"></div>
+                </div>
+
+                <div class="stock-waste">
+                    <div id="stock" class="stock"></div>
+                    <div id="waste" class="waste"></div>
+                </div>
+
+                <div class="tableau-piles">
+                    <div class="tableau-pile" data-pile="0"></div>
+                    <div class="tableau-pile" data-pile="1"></div>
+                    <div class="tableau-pile" data-pile="2"></div>
+                    <div class="tableau-pile" data-pile="3"></div>
+                    <div class="tableau-pile" data-pile="4"></div>
+                    <div class="tableau-pile" data-pile="5"></div>
+                    <div class="tableau-pile" data-pile="6"></div>
+                </div>
+            </div>
+
+            <div id="gameOver" class="game-over hidden">
+                <h2>Поздравляем!</h2>
+                <p>Вы выиграли за <span id="finalTime">00:00</span></p>
+                <p>Количество ходов: <span id="finalMoves">0</span></p>
+                <button id="playAgainBtn" class="btn">Играть снова</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

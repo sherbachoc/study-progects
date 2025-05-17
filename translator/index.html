@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переводчик</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="translator-container">
+            <h1>Переводчик</h1>
+            
+            <div class="language-selector">
+                <div class="language-group">
+                    <select id="fromLanguage" class="language-select">
+                        <option value="ru">Русский</option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="it">Italiano</option>
+                        <option value="pt">Português</option>
+                        <option value="zh">中文</option>
+                        <option value="ja">日本語</option>
+                        <option value="ko">한국어</option>
+                    </select>
+                    <button id="swapLanguages" class="swap-btn">
+                        <span class="material-icons">swap_horiz</span>
+                    </button>
+                    <select id="toLanguage" class="language-select">
+                        <option value="en">English</option>
+                        <option value="ru">Русский</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="it">Italiano</option>
+                        <option value="pt">Português</option>
+                        <option value="zh">中文</option>
+                        <option value="ja">日本語</option>
+                        <option value="ko">한국어</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="translation-area">
+                <div class="input-area">
+                    <textarea id="sourceText" placeholder="Введите текст для перевода..." rows="6"></textarea>
+                    <div class="input-controls">
+                        <button id="clearInput" class="control-btn">
+                            <span class="material-icons">clear</span>
+                        </button>
+                        <button id="copyInput" class="control-btn">
+                            <span class="material-icons">content_copy</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="output-area">
+                    <textarea id="translatedText" placeholder="Перевод..." rows="6" readonly></textarea>
+                    <div class="output-controls">
+                        <button id="copyOutput" class="control-btn">
+                            <span class="material-icons">content_copy</span>
+                        </button>
+                        <button id="speakOutput" class="control-btn">
+                            <span class="material-icons">volume_up</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="translation-history">
+                <h2>История переводов</h2>
+                <div id="historyList" class="history-list"></div>
+            </div>
+        </div>
+    </div>
+    <script src="code.js"></script>
+</body>
+</html>

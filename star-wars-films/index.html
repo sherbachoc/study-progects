@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Звездные войны</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Звездные войны</h1>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Поиск фильмов...">
+                <button id="searchBtn" class="search-btn">
+                    <span class="material-icons">search</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="sortSelect">Сортировка:</label>
+                    <select id="sortSelect" class="filter-select">
+                        <option value="episode">По эпизоду</option>
+                        <option value="year">По году</option>
+                        <option value="title">По названию</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filterSelect">Фильтр:</label>
+                    <select id="filterSelect" class="filter-select">
+                        <option value="all">Все фильмы</option>
+                        <option value="original">Оригинальная трилогия</option>
+                        <option value="prequel">Приквелы</option>
+                        <option value="sequel">Сиквелы</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="filmsList" class="films-grid"></div>
+        </main>
+
+        <div id="filmModal" class="modal hidden">
+            <div class="modal-content">
+                <button id="closeModal" class="close-btn">
+                    <span class="material-icons">close</span>
+                </button>
+                <div class="film-details">
+                    <h2 id="modalTitle"></h2>
+                    <div class="film-info">
+                        <div class="info-group">
+                            <span class="info-label">Эпизод:</span>
+                            <span id="modalEpisode"></span>
+                        </div>
+                        <div class="info-group">
+                            <span class="info-label">Год:</span>
+                            <span id="modalYear"></span>
+                        </div>
+                        <div class="info-group">
+                            <span class="info-label">Режиссер:</span>
+                            <span id="modalDirector"></span>
+                        </div>
+                        <div class="info-group">
+                            <span class="info-label">Продюсер:</span>
+                            <span id="modalProducer"></span>
+                        </div>
+                    </div>
+                    <div class="film-description">
+                        <h3>Описание</h3>
+                        <p id="modalDescription"></p>
+                    </div>
+                    <div class="film-characters">
+                        <h3>Персонажи</h3>
+                        <div id="modalCharacters" class="characters-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="code.js"></script>
+</body>
+</html>

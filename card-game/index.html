@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра в пары</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="game-container">
+            <div class="game-header">
+                <h1>Игра в пары</h1>
+                <div class="game-stats">
+                    <div class="timer">
+                        <span class="material-icons">timer</span>
+                        <span id="time">00:00</span>
+                    </div>
+                    <div class="moves">
+                        <span class="material-icons">refresh</span>
+                        <span id="moves">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button id="startBtn" class="btn">Начать игру</button>
+                <button id="restartBtn" class="btn" disabled>Начать заново</button>
+            </div>
+
+            <div id="gameBoard" class="game-board">
+                <!-- Карточки будут добавлены динамически -->
+            </div>
+
+            <div id="gameOver" class="game-over hidden">
+                <h2>Поздравляем!</h2>
+                <p>Вы нашли все пары за <span id="finalTime">00:00</span></p>
+                <p>Количество ходов: <span id="finalMoves">0</span></p>
+                <button id="playAgainBtn" class="btn">Играть снова</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

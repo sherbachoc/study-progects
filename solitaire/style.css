@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.game-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.timer, .moves {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    font-size: 16px;
+}
+
+.material-icons {
+    font-size: 20px;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background: #357abd;
+}
+
+.btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.foundation-piles, .stock-waste {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.foundation-piles {
+    margin-bottom: 20px;
+}
+
+.foundation-pile, .stock, .waste, .tableau-pile {
+    width: 100px;
+    height: 140px;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    background: #f8f9fa;
+    position: relative;
+}
+
+.foundation-pile {
+    border-color: #4a90e2;
+}
+
+.card {
+    width: 100px;
+    height: 140px;
+    position: absolute;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card.red {
+    color: #e74c3c;
+}
+
+.card.black {
+    color: #2c3e50;
+}
+
+.card-face {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.card-corner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+}
+
+.card-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+}
+
+.tableau-piles {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.tableau-pile {
+    min-height: 140px;
+}
+
+.tableau-pile .card {
+    position: relative;
+    margin-top: -120px;
+}
+
+.tableau-pile .card:first-child {
+    margin-top: 0;
+}
+
+.game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.game-over h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.game-over p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .game-container {
+        padding: 20px;
+    }
+    
+    .foundation-pile, .stock, .waste, .tableau-pile, .card {
+        width: 80px;
+        height: 112px;
+    }
+    
+    .tableau-pile .card {
+        margin-top: -92px;
+    }
+}
+
+@media (max-width: 768px) {
+    .foundation-pile, .stock, .waste, .tableau-pile, .card {
+        width: 60px;
+        height: 84px;
+    }
+    
+    .tableau-pile .card {
+        margin-top: -64px;
+    }
+    
+    .card-face {
+        font-size: 14px;
+    }
+    
+    .card-corner {
+        font-size: 12px;
+    }
+    
+    .card-center {
+        font-size: 24px;
+    }
+} 
