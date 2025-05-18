@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таймер и Секундомер</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="current-time">
+            <h2>Текущее время</h2>
+            <div id="clock">Загрузка...</div>
+        </div>
+
+        <div class="timer-section">
+            <h2>Таймер</h2>
+            <div class="display" id="timer-display">00:00:00</div>
+            <div class="controls">
+                <input type="number" id="hours" min="0" max="23" placeholder="Часы">
+                <input type="number" id="minutes" min="0" max="59" placeholder="Минуты">
+                <input type="number" id="seconds" min="0" max="59" placeholder="Секунды">
+                <button id="start-timer">Старт</button>
+                <button id="stop-timer">Стоп</button>
+                <button id="reset-timer">Сброс</button>
+            </div>
+        </div>
+
+        <div class="stopwatch-section">
+            <h2>Секундомер</h2>
+            <div class="display" id="stopwatch-display">00:00:00</div>
+            <div class="controls">
+                <button id="start-stopwatch">Старт</button>
+                <button id="stop-stopwatch">Стоп</button>
+                <button id="reset-stopwatch">Сброс</button>
+                <button id="lap-stopwatch">Круг</button>
+            </div>
+            <div class="laps" id="laps-container"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
