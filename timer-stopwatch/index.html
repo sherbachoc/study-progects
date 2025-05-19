@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таймер и Секундомер</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <section class="clock">
+            <h2>Текущее время</h2>
+            <div class="display" id="clock">00:00:00</div>
+        </section>
+
+        <section class="timer">
+            <h2>Таймер</h2>
+            <div class="display" id="timer">00:00:00</div>
+            <div class="controls">
+                <div class="input-group">
+                    <input type="number" id="hours" min="0" max="23" value="0" placeholder="Часы">
+                    <input type="number" id="minutes" min="0" max="59" value="0" placeholder="Минуты">
+                    <input type="number" id="seconds" min="0" max="59" value="0" placeholder="Секунды">
+                </div>
+                <div class="buttons">
+                    <button id="startTimer" class="start">Старт</button>
+                    <button id="stopTimer" class="stop">Стоп</button>
+                    <button id="resetTimer" class="reset">Сброс</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="stopwatch">
+            <h2>Секундомер</h2>
+            <div class="display" id="stopwatch">00:00:00</div>
+            <div class="controls">
+                <div class="buttons">
+                    <button id="startStopwatch" class="start">Старт</button>
+                    <button id="stopStopwatch" class="stop">Стоп</button>
+                    <button id="resetStopwatch" class="reset">Сброс</button>
+                    <button id="lapStopwatch" class="lap">Круг</button>
+                </div>
+                <div id="laps" class="laps"></div>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
