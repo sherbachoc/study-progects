@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+}
+
+.alarm-clock {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    width: 300px;
+}
+
+.current-time {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.alarm-setting {
+    margin-bottom: 20px;
+}
+
+.alarm-setting h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.alarm-setting input[type="time"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.alarm-setting button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#setAlarm {
+    background-color: #28a745;
+    color: white;
+}
+
+#setAlarm:hover {
+    background-color: #218838;
+}
+
+#stopAlarm {
+    background-color: #dc3545;
+    color: white;
+}
+
+#stopAlarm:hover {
+    background-color: #c82333;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.alarm-message {
+    font-size: 18px;
+    color: #dc3545;
+    min-height: 20px;
+} 
