@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор</title>
+    <title>Умный Калькулятор</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="calculator">
         <div class="display">
+            <div class="history" id="history"></div>
             <input type="text" id="result" readonly>
         </div>
         <div class="buttons">
@@ -35,6 +37,12 @@
             <button onclick="appendNumber('0')">0</button>
             <button onclick="appendNumber('.')">.</button>
             <button class="equals" onclick="calculate()">=</button>
+        </div>
+        <div class="memory-buttons">
+            <button class="memory" onclick="memoryAdd()">M+</button>
+            <button class="memory" onclick="memorySubtract()">M-</button>
+            <button class="memory" onclick="memoryRecall()">MR</button>
+            <button class="memory" onclick="memoryClear()">MC</button>
         </div>
     </div>
     <script src="script.js"></script>
