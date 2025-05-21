@@ -75,6 +75,14 @@ function startTimer() {
 
 function stopTimer() {
     timerRunning = false;
+    // Проигрываем звук, если таймер дошёл до нуля
+    if (timerTime === 0) {
+        const audio = document.getElementById('timer-sound');
+        if (audio) {
+            audio.currentTime = 0;
+            audio.play();
+        }
+    }
 }
 
 function resetTimer() {
@@ -245,4 +253,15 @@ const timerInputs = ['hours', 'minutes', 'seconds'];
 timerInputs.forEach(id => {
     const input = document.getElementById(id);
     input.addEventListener('wheel', (e) => handleWheel(e, input));
-}); 
+});
+
+document.getElementById('stopSound').addEventListener('click', () => {
+    const audio = document.getElementById('timer-sound');
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+});
+
+// Вызываем функцию отображения таймера при загрузке страницы
+updateTimerDisplay(); 

@@ -404,7 +404,6 @@ button:active {
     border-radius: 50%;
     position: relative;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border: 10px solid #1a73e8;
     margin: 0 auto 1.5rem;
 }
 
