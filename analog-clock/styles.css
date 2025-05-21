@@ -109,20 +109,6 @@ body {
 .number-11 { transform: rotate(330deg); }
 .number-12 { transform: rotate(0deg); }
 
-.digital-time {
-    position: absolute;
-    bottom: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.2rem;
-    font-family: monospace;
-    color: #1a73e8;
-    background: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
 /* Деления на циферблате */
 .clock::before {
     content: '';
@@ -140,4 +126,70 @@ body {
         transparent 30deg
     );
     z-index: -1;
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media screen and (max-width: 480px) {
+    .clock {
+        width: 250px;
+        height: 250px;
+        border-width: 8px;
+    }
+
+    .hour-hand {
+        width: 5px;
+        height: 65px;
+    }
+
+    .minute-hand {
+        width: 3px;
+        height: 85px;
+    }
+
+    .second-hand {
+        width: 2px;
+        height: 100px;
+    }
+
+    .number {
+        font-size: 1.2rem;
+    }
+
+    .center-point {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Медиа-запросы для очень маленьких экранов */
+@media screen and (max-width: 320px) {
+    .clock {
+        width: 200px;
+        height: 200px;
+        border-width: 6px;
+    }
+
+    .hour-hand {
+        width: 4px;
+        height: 50px;
+    }
+
+    .minute-hand {
+        width: 3px;
+        height: 70px;
+    }
+
+    .second-hand {
+        width: 2px;
+        height: 80px;
+    }
+
+    .number {
+        font-size: 1rem;
+    }
+
+    .center-point {
+        width: 8px;
+        height: 8px;
+    }
 } 

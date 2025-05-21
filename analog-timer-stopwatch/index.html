@@ -3,11 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Аналоговый Таймер и Секундомер</title>
+    <title>Аналоговые Часы, Таймер и Секундомер</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
+        <div class="clock-section">
+            <h2>Часы</h2>
+            <div class="analog-clock clock">
+                <div class="center-point"></div>
+                <div class="hour-hand"></div>
+                <div class="minute-hand"></div>
+                <div class="second-hand"></div>
+                <div class="numbers">
+                    <span class="number number-1">1</span>
+                    <span class="number number-2">2</span>
+                    <span class="number number-3">3</span>
+                    <span class="number number-4">4</span>
+                    <span class="number number-5">5</span>
+                    <span class="number number-6">6</span>
+                    <span class="number number-7">7</span>
+                    <span class="number number-8">8</span>
+                    <span class="number number-9">9</span>
+                    <span class="number number-10">10</span>
+                    <span class="number number-11">11</span>
+                    <span class="number number-12">12</span>
+                </div>
+            </div>
+        </div>
+
         <div class="timer-section">
             <h2>Таймер</h2>
             <div class="analog-clock timer">
@@ -29,13 +53,21 @@
                     <span class="number number-11">11</span>
                     <span class="number number-12">12</span>
                 </div>
-                <div class="digital-time">00:00:00</div>
             </div>
             <div class="controls">
                 <div class="input-group">
-                    <input type="number" id="hours" min="0" max="23" value="0" placeholder="Часы">
-                    <input type="number" id="minutes" min="0" max="59" value="0" placeholder="Минуты">
-                    <input type="number" id="seconds" min="0" max="59" value="0" placeholder="Секунды">
+                    <div class="time-input">
+                        <label>Часы</label>
+                        <input type="number" id="hours" min="0" max="23" value="0" placeholder="Часы">
+                    </div>
+                    <div class="time-input">
+                        <label>Минуты</label>
+                        <input type="number" id="minutes" min="0" max="59" value="0" placeholder="Минуты">
+                    </div>
+                    <div class="time-input">
+                        <label>Секунды</label>
+                        <input type="number" id="seconds" min="0" max="59" value="0" placeholder="Секунды">
+                    </div>
                 </div>
                 <div class="buttons">
                     <button id="startTimer" class="start">Старт</button>
@@ -66,7 +98,6 @@
                     <span class="number number-11">11</span>
                     <span class="number number-12">12</span>
                 </div>
-                <div class="digital-time">00:00:00</div>
             </div>
             <div class="controls">
                 <div class="buttons">

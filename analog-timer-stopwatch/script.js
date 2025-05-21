@@ -1,3 +1,37 @@
+// Обычные часы
+let lastClockTime = 0;
+
+function updateClock(timestamp) {
+    if (!lastClockTime) lastClockTime = timestamp;
+    const progress = timestamp - lastClockTime;
+    lastClockTime = timestamp;
+
+    const now = new Date();
+    const hours = now.getHours() % 12;
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const milliseconds = now.getMilliseconds();
+
+    // Вычисляем углы для стрелок
+    const hourDegrees = (hours * 30) + (minutes * 0.5); // 30 градусов на час + 0.5 градуса на минуту
+    const minuteDegrees = minutes * 6; // 6 градусов на минуту
+    const secondDegrees = (seconds * 6) + (milliseconds * 0.006); // 6 градусов на секунду + плавное движение
+
+    // Применяем поворот к стрелкам
+    document.querySelector('.clock .hour-hand').style.transform = 
+        `translate(-50%, -100%) rotate(${hourDegrees}deg)`;
+    document.querySelector('.clock .minute-hand').style.transform = 
+        `translate(-50%, -100%) rotate(${minuteDegrees}deg)`;
+    document.querySelector('.clock .second-hand').style.transform = 
+        `translate(-50%, -100%) rotate(${secondDegrees}deg)`;
+
+    // Запрашиваем следующий кадр анимации
+    requestAnimationFrame(updateClock);
+}
+
+// Запускаем часы
+requestAnimationFrame(updateClock);
+
 // Таймер
 let timerInterval;
 let timerTime = 0;
@@ -57,9 +91,10 @@ function updateTimerDisplay() {
     const minutes = Math.floor((timerTime % 3600) / 60);
     const seconds = Math.floor(timerTime % 60);
     
-    // Обновляем цифровое время
-    const digitalTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    document.querySelector('.timer .digital-time').textContent = digitalTime;
+    // Обновляем поля ввода
+    document.getElementById('hours').value = hours;
+    document.getElementById('minutes').value = minutes;
+    document.getElementById('seconds').value = seconds;
     
     // Обновляем стрелки
     const totalSeconds = timerTime;
@@ -74,6 +109,50 @@ function updateTimerDisplay() {
         `translate(-50%, -100%) rotate(${minuteDegrees}deg)`;
     document.querySelector('.timer .second-hand').style.transform = 
         `translate(-50%, -100%) rotate(${secondDegrees}deg)`;
+}
+
+// Обработчики колесика мыши для таймера
+function handleWheel(event, input) {
+    event.preventDefault();
+    const currentValue = parseInt(input.value) || 0;
+    const maxValue = parseInt(input.max);
+    const minValue = parseInt(input.min);
+    
+    if (event.deltaY < 0) { // Прокрутка вверх
+        if (currentValue < maxValue) {
+            input.value = currentValue + 1;
+        }
+    } else { // Прокрутка вниз
+        if (currentValue > minValue) {
+            input.value = currentValue - 1;
+        }
+    }
+    
+    // Проверяем и обновляем связанные поля
+    if (input.id === 'seconds' && currentValue === 59 && event.deltaY < 0) {
+        const minutesInput = document.getElementById('minutes');
+        const minutesValue = parseInt(minutesInput.value) || 0;
+        if (minutesValue < 59) {
+            minutesInput.value = minutesValue + 1;
+            input.value = 0;
+        }
+    } else if (input.id === 'minutes' && currentValue === 59 && event.deltaY < 0) {
+        const hoursInput = document.getElementById('hours');
+        const hoursValue = parseInt(hoursInput.value) || 0;
+        if (hoursValue < 23) {
+            hoursInput.value = hoursValue + 1;
+            input.value = 0;
+        }
+    }
+    
+    // Обновляем таймер при изменении значений
+    if (!timerRunning) {
+        const hours = parseInt(document.getElementById('hours').value) || 0;
+        const minutes = parseInt(document.getElementById('minutes').value) || 0;
+        const seconds = parseInt(document.getElementById('seconds').value) || 0;
+        timerTime = hours * 3600 + minutes * 60 + seconds;
+        updateTimerDisplay();
+    }
 }
 
 // Секундомер
@@ -127,9 +206,6 @@ function addLap() {
 }
 
 function updateStopwatchDisplay() {
-    // Обновляем цифровое время
-    document.querySelector('.stopwatch .digital-time').textContent = formatTime(stopwatchTime);
-    
     // Обновляем стрелки
     const totalSeconds = stopwatchTime / 1000; // Конвертируем миллисекунды в секунды
     const hourDegrees = (totalSeconds / 3600) * 30; // 30 градусов на час
@@ -162,4 +238,11 @@ document.getElementById('resetTimer').addEventListener('click', resetTimer);
 document.getElementById('startStopwatch').addEventListener('click', startStopwatch);
 document.getElementById('stopStopwatch').addEventListener('click', stopStopwatch);
 document.getElementById('resetStopwatch').addEventListener('click', resetStopwatch);
-document.getElementById('lapStopwatch').addEventListener('click', addLap); 
+document.getElementById('lapStopwatch').addEventListener('click', addLap);
+
+// Добавляем обработчики колесика мыши для полей ввода таймера
+const timerInputs = ['hours', 'minutes', 'seconds'];
+timerInputs.forEach(id => {
+    const input = document.getElementById(id);
+    input.addEventListener('wheel', (e) => handleWheel(e, input));
+}); 

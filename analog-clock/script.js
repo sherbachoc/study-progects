@@ -24,10 +24,6 @@ function updateClock(timestamp) {
     document.querySelector('.second-hand').style.transform = 
         `translate(-50%, -100%) rotate(${secondDegrees}deg)`;
 
-    // Обновляем цифровое время
-    const digitalTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    document.querySelector('.digital-time').textContent = digitalTime;
-
     // Запрашиваем следующий кадр анимации
     requestAnimationFrame(updateClock);
 }

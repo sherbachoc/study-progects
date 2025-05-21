@@ -6,30 +6,135 @@
 
 body {
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #f0f2f5;
-    padding: 2rem;
     font-family: Arial, sans-serif;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    display: flex;
     gap: 2rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.timer-section, .stopwatch-section {
+.clock-section, .timer-section, .stopwatch-section {
     background: white;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
 }
 
 h2 {
-    color: #1a73e8;
-    margin-bottom: 1rem;
     text-align: center;
+    margin-bottom: 1.5rem;
+    color: #1a73e8;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.time-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.time-input label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+input[type="number"] {
+    width: 80px;
+    padding: 0.5rem;
+    border: 2px solid #1a73e8;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="number"]:focus {
+    border-color: #174ea6;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.start {
+    background: #1a73e8;
+    color: white;
+}
+
+.start:hover {
+    background: #174ea6;
+}
+
+.stop {
+    background: #ea4335;
+    color: white;
+}
+
+.stop:hover {
+    background: #c5221f;
+}
+
+.reset {
+    background: #fbbc04;
+    color: white;
+}
+
+.reset:hover {
+    background: #f29900;
+}
+
+.lap {
+    background: #34a853;
+    color: white;
+}
+
+.lap:hover {
+    background: #2d9249;
 }
 
 .analog-clock {
@@ -40,7 +145,25 @@ h2 {
     position: relative;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border: 10px solid #1a73e8;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1.5rem;
+}
+
+.analog-clock::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 6deg,
+        #1a73e8 6deg,
+        #1a73e8 6.5deg,
+        transparent 6.5deg,
+        transparent 30deg
+    );
+    z-index: -1;
 }
 
 .center-point {
@@ -55,43 +178,30 @@ h2 {
     z-index: 10;
 }
 
-.hour-hand {
+.hour-hand, .minute-hand, .second-hand {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform-origin: bottom center;
+    border-radius: 4px;
+}
+
+.hour-hand {
     width: 6px;
     height: 80px;
     background: #202124;
-    border-radius: 3px;
-    transform-origin: bottom center;
-    transform: translate(-50%, -100%) rotate(0deg);
-    will-change: transform;
 }
 
 .minute-hand {
-    position: absolute;
-    top: 50%;
-    left: 50%;
     width: 4px;
     height: 100px;
     background: #202124;
-    border-radius: 2px;
-    transform-origin: bottom center;
-    transform: translate(-50%, -100%) rotate(0deg);
-    will-change: transform;
 }
 
 .second-hand {
-    position: absolute;
-    top: 50%;
-    left: 50%;
     width: 2px;
     height: 120px;
     background: #ea4335;
-    border-radius: 1px;
-    transform-origin: bottom center;
-    transform: translate(-50%, -100%) rotate(0deg);
-    will-change: transform;
 }
 
 .numbers {
@@ -140,80 +250,212 @@ h2 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.controls {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.input-group {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
-}
-
-input {
-    padding: 0.5rem;
-    border: 1px solid #dadce0;
-    border-radius: 4px;
-    text-align: center;
-    font-size: 1rem;
-}
-
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 0.5rem;
-}
-
-button {
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: opacity 0.2s;
-}
-
-button:hover {
-    opacity: 0.9;
-}
-
-.start {
-    background: #34a853;
-    color: white;
-}
-
-.stop {
-    background: #ea4335;
-    color: white;
-}
-
-.reset {
-    background: #fbbc05;
-    color: white;
-}
-
-.lap {
-    background: #4285f4;
-    color: white;
-}
-
 .laps {
-    margin-top: 1rem;
     max-height: 200px;
     overflow-y: auto;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: #f8f9fa;
 }
 
 .lap-item {
     padding: 0.5rem;
-    border-bottom: 1px solid #dadce0;
-    display: flex;
-    justify-content: space-between;
+    border-bottom: 1px solid #dee2e6;
+    font-family: monospace;
 }
 
-/* Деления на циферблате */
-.analog-clock::before {
+.lap-item:last-child {
+    border-bottom: none;
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timer-section, .stopwatch-section {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .analog-clock {
+        width: 250px;
+        height: 250px;
+    }
+
+    .input-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .time-input {
+        width: 100%;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .analog-clock {
+        width: 200px;
+        height: 200px;
+        border-width: 8px;
+    }
+
+    .hour-hand {
+        width: 5px;
+        height: 65px;
+    }
+
+    .minute-hand {
+        width: 3px;
+        height: 85px;
+    }
+
+    .second-hand {
+        width: 2px;
+        height: 100px;
+    }
+
+    .number {
+        font-size: 1.2rem;
+    }
+
+    .digital-time {
+        font-size: 1rem;
+        bottom: 15%;
+    }
+
+    .center-point {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+.hour-hand:active, .minute-hand:active, .second-hand:active {
+    cursor: grabbing;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.timer .controls {
+    display: flex;
+    gap: 10px;
+}
+
+.timer .controls button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.timer .controls button:hover {
+    background: #45a049;
+}
+
+.timer .controls button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.timer .time-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.timer .time-inputs input {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.timer .time-inputs label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.timer .analog-clock {
+    width: 300px;
+    height: 300px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 10px solid #1a73e8;
+    margin: 0 auto 1.5rem;
+}
+
+.timer .numbers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.timer .number {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #202124;
+    padding: 10px;
+}
+
+.timer .number-1 { transform: rotate(30deg); }
+.timer .number-2 { transform: rotate(60deg); }
+.timer .number-3 { transform: rotate(90deg); }
+.timer .number-4 { transform: rotate(120deg); }
+.timer .number-5 { transform: rotate(150deg); }
+.timer .number-6 { transform: rotate(180deg); }
+.timer .number-7 { transform: rotate(210deg); }
+.timer .number-8 { transform: rotate(240deg); }
+.timer .number-9 { transform: rotate(270deg); }
+.timer .number-10 { transform: rotate(300deg); }
+.timer .number-11 { transform: rotate(330deg); }
+.timer .number-12 { transform: rotate(0deg); }
+
+.timer .digital-time {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    font-family: monospace;
+    color: #1a73e8;
+    background: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Деления на циферблате таймера */
+.timer .analog-clock::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -229,56 +471,4 @@ button:hover {
         transparent 30deg
     );
     z-index: -1;
-}
-
-@media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-    
-    .analog-clock {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .number {
-        font-size: 1.2rem;
-    }
-}
-
-.hour-hand:active, .minute-hand:active, .second-hand:active {
-    cursor: grabbing;
-}
-
-.timer .hour-hand, .timer .minute-hand, .timer .second-hand {
-    will-change: transform;
-}
-
-.timer .hour-hand {
-    height: 60px;
-    width: 8px;
-    background: #202124;
-    border-radius: 4px;
-}
-
-.timer .minute-hand {
-    height: 80px;
-    width: 6px;
-    background: #202124;
-    border-radius: 3px;
-}
-
-.timer .second-hand {
-    height: 90px;
-    width: 4px;
-    background: #ea4335;
-    border-radius: 2px;
-}
-
-.timer .center-point {
-    width: 16px;
-    height: 16px;
-    background: #1a73e8;
-    border: 3px solid white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 } 
